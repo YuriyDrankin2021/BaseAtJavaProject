@@ -1,0 +1,145 @@
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+
+plugins {
+    id "java"
+    id "application"
+    id("io.qameta.allure") version "2.12.0"
+    id("org.gradle.test-retry") version "1.6.2"
+    id("io.qameta.allure-adapter") version "2.12.0"
+//    id("org.projectlombok") version "1.18.24"
+
+}
+//
+//apply plugin: 'java'
+//apply plugin: 'application'
+//apply plugin: 'io.qameta.allure'
+//apply plugin: 'io.qameta.allure-adapter'
+//apply plugin: 'org.gradle.test-retry'
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+//buildscript {
+//    repositories {
+//        mavenCentral()
+//        gradlePluginPortal()
+//    }
+//    ext {
+//        testRetryVerrsion = '1.6.2'
+//        allureVersion = '2.22.2'
+//        allurePluginVersion = '2.11.2'
+//        lombockVersion = '1.18.24'
+//    }
+//    dependencies {
+//        classpath("org.gradle:test-retry-plugin:${testRetryVerrsion}")
+//        classpath("io.qameta.allure:io.qameta.allure.gradle-plugin:${allurePluginVersion}")
+//    }
+//}
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+def allureVersion = "2.27.0"
+
+dependencies {
+    //Junit
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    //Allure
+    testImplementation platform("io.qameta.allure:allure-bom:$allureVersion")
+    testImplementation 'com.github.automatedowl:allure-environment-writer:1.0.0'
+    implementation "io.qameta.allure:allure-selenide:$allureVersion"
+    implementation "io.qameta.allure:allure-junit5:$allureVersion"
+    implementation "io.qameta.allure:allure-rest-assured:$allureVersion"
+
+    //Lombok
+    compileOnly 'org.projectlombok:lombok:1.18.36'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.36'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.36'
+    implementation 'org.jetbrains:annotations:26.0.1'
+
+    //Logs
+    implementation 'ch.qos.logback:logback-classic:1.5.6'
+    implementation 'org.slf4j:slf4j-api:2.0.13'
+    implementation 'org.slf4j:log4j-over-slf4j:2.0.13'
+
+    //DB
+    implementation 'org.postgresql:postgresql:42.7.3'
+    implementation 'org.jooq:jooq:3.19.7'
+    implementation 'org.jooq:jooq-meta:3.19.7'
+    implementation 'org.jooq:jooq-codegen:3.19.7'
+
+    //Other
+    implementation 'com.codeborne:selenide:7.3.1'
+    implementation 'io.rest-assured:rest-assured:5.4.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
+    testImplementation 'org.assertj:assertj-core:3.25.3'
+    testImplementation 'org.aspectj:aspectjweaver:1.9.22'
+    implementation 'org.awaitility:awaitility:4.2.1'
+    implementation 'com.arakelian:faker:4.0.1'
+}
+
+test {
+    //run tests by tags
+    String iTags = System.getProperty("includeTags")
+    String eTags = System.getProperty("excludeTags")
+    useJUnitPlatform {
+        if (iTags != null) {
+            def inclTags = iTags.split(',') as Set
+            setIncludeTags(inclTags)
+        }
+        if (eTags != null) {
+            def exclTags = eTags.split(',') as Set
+            setIncludeTags(exclTags)
+        }
+        println(
+                """
+                    Include tags: "$includeTags"
+                    Exclude tags: "$excludeTags"
+                """
+        )
+    }
+
+    testLogging.showStandardStreams = true
+    testLogging {
+        showStandardStreams = true
+        events("STARTED", "PASSED", "SKIPPED", "FAILED")
+        exceptionFormat = TestExceptionFormat.FULL
+        showCauses = true
+        showExceptions = true
+        showStackTraces = true
+    }
+}
+
+tasks.withType(Test).configureEach {
+    System.properties.forEach { k, v -> systemProperty(k.toString(), v) }
+    String env = System.getProperty("env") ?
+            System.getProperty("env") : "test"
+    systemProperty("env", env)
+    String browser = System.getProperty("browser") ?
+            System.getProperty("browser") : "chrome"
+    systemProperty("browser", browser)
+    println(
+            """
+                    Environment: "$env"
+                    Browser:     "$browser"
+                """
+    )
+}
+
+allure {
+    version = allureVersion
+    adapter {
+        aspectjVersion = "1.9.22"
+        autoconfigure = false
+        aspectjWeaver = true
+        frameworks {
+            junit5 {
+                enabled = true
+            }
+        }
+    }
+}
