@@ -25,13 +25,13 @@ compileTestJava.options.encoding = 'UTF-8'
 //        gradlePluginPortal()
 //    }
 //    ext {
-//        testRetryVerrsion = '1.6.2'
+//        testRetryVersion = '1.6.2'
 //        allureVersion = '2.22.2'
 //        allurePluginVersion = '2.11.2'
 //        lombockVersion = '1.18.24'
 //    }
 //    dependencies {
-//        classpath("org.gradle:test-retry-plugin:${testRetryVerrsion}")
+//        classpath("org.gradle:test-retry-plugin:${testRetryVersion}")
 //        classpath("io.qameta.allure:io.qameta.allure.gradle-plugin:${allurePluginVersion}")
 //    }
 //}
@@ -40,6 +40,7 @@ compileTestJava.options.encoding = 'UTF-8'
         gradlePluginPortal()
     }
 def allureVersion = "2.27.0"
+def selenideVersion = "7.7.3"
 
 dependencies {
     //Junit
@@ -72,9 +73,13 @@ dependencies {
     implementation 'org.jooq:jooq-meta:3.19.7'
     implementation 'org.jooq:jooq-codegen:3.19.7'
 
+    //Selenide
+    implementation "com.codeborne:selenide:$selenideVersion"
+    implementation "com.codeborne:selenide-selenoid:$selenideVersion"
+    implementation "com.codeborne:selenide-appium:$selenideVersion"
+
     //Other
-    implementation 'com.codeborne:selenide:7.3.1'
-    implementation 'io.rest-assured:rest-assured:5.4.0'
+    implementation 'io.rest-assured:rest-assured:5.5.1'
     implementation 'com.google.code.gson:gson:2.10.1'
     testImplementation 'org.assertj:assertj-core:3.25.3'
     testImplementation 'org.aspectj:aspectjweaver:1.9.22'

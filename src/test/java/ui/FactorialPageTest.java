@@ -4,7 +4,6 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Description;
 import io.qameta.allure.selenide.AllureSelenide;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,21 +16,16 @@ import pages.FactorialPage;
 import java.time.Duration;
 import java.util.stream.Stream;
 
-import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-public class FactorialPageTest {
+public class FactorialPageTest extends BaseUITest {
     Logger logger = LoggerFactory.getLogger(FactorialPageTest.class);
 
     @BeforeAll
-    public static void setUp() {
+    public void setUp() {
+        super.setUp();
         SelenideLogger.addListener("allure", new AllureSelenide());
-    }
-
-    @AfterAll
-    public static void tearDown() {
-        closeWebDriver();
     }
 
     @Test
@@ -64,7 +58,7 @@ public class FactorialPageTest {
                 arguments("0", "The factorial of 0 is: 1"),
                 arguments("-1", "Incorrect value"),
                 arguments("1.5", "Incorrect value"),
-                arguments("bububub", "Incorrect value")
+                arguments("bububu", "Incorrect value")
         );
     }
 }

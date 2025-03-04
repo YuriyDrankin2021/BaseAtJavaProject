@@ -30,4 +30,9 @@ public class TestConfig {
         String env = System.getProperty("env");
         return getPropertiesForEnv(env);
     }
+
+    public static String getProperty(String name) {
+        Properties properties = config();
+        return System.getProperty(name) == null ? properties.getProperty(name) : System.getProperty(name);
+    }
 }
