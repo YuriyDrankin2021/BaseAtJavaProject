@@ -38,6 +38,10 @@ public class Browser {
             Map<String, Object> selenoidOptions = new HashMap<>();
             selenoidOptions.put("enableVNC", true);
             selenoidOptions.put("enableVideo", false);
+            selenoidOptions.put("name", "BaseAt");
+            selenoidOptions.put("labels", new HashMap<String, Object>() {{
+                put("manual", "true");
+            }});
             capabilities.setCapability("selenoid:options", selenoidOptions);
             Configuration.remote = "http://localhost:4444/wd/hub";
         }
