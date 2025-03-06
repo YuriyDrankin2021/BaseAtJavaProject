@@ -72,6 +72,7 @@ dependencies {
     implementation 'org.jooq:jooq:3.19.7'
     implementation 'org.jooq:jooq-meta:3.19.7'
     implementation 'org.jooq:jooq-codegen:3.19.7'
+    implementation 'org.hibernate:hibernate-core:6.6.9.Final'
 
     //Selenide
     implementation "com.codeborne:selenide:$selenideVersion"
@@ -84,7 +85,7 @@ dependencies {
     testImplementation 'org.assertj:assertj-core:3.25.3'
     testImplementation 'org.aspectj:aspectjweaver:1.9.22'
     implementation 'org.awaitility:awaitility:4.2.1'
-    implementation 'com.arakelian:faker:4.0.1'
+    implementation 'com.github.javafaker:javafaker:1.0.2'
 }
 
 test {
