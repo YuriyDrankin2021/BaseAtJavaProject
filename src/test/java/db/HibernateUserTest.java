@@ -23,7 +23,7 @@ public class HibernateUserTest {
     User user;
 
     @AfterAll
-    void tearDown(){
+    void tearDown() {
         userService.deleteUser(user);
     }
 
@@ -32,7 +32,7 @@ public class HibernateUserTest {
     public void createUserInDbTest() {
         logger.debug("Start test 'Create new user in db'");
         user = new User(faker.name().firstName(), faker.number().numberBetween(1, 100));
-        userService.saveUser(user);
+        user = userService.saveUser(user);
         logger.info(user.toString());
         User userResult = userService.findUserById(user.getId());
 
@@ -44,7 +44,7 @@ public class HibernateUserTest {
             testAuto.setUser(user);
             user.addAuto(testAuto);
         }
-        userService.updateUser(user);
+        user = userService.updateUser(user);
         List<Auto> autoList = autoService.findAllAutos();
         softAssertions.assertThat(autoList).hasSize(2);
         softAssertions.assertAll();
