@@ -13,19 +13,19 @@ public class UserService {
     }
 
     public User findUserById(int id) {
-        return usersDao.findById(id);
+        return usersDao.getById(id);
     }
 
-    public void saveUser(User user) {
-        usersDao.save(user);
+    public User saveUser(User user) {
+        return usersDao.create(user);
     }
 
     public void deleteUser(User user) {
         usersDao.delete(user);
     }
 
-    public void updateUser(User user) {
-        usersDao.update(user);
+    public User updateUser(User user) {
+        return usersDao.update(user);
     }
 
     public List<User> findAllUsers() {
