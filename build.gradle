@@ -49,7 +49,7 @@ dependencies {
 
     //Allure
     testImplementation platform("io.qameta.allure:allure-bom:$allureVersion")
-    testImplementation 'com.github.automatedowl:allure-environment-writer:1.0.0'
+//    testImplementation 'com.github.automatedowl:allure-environment-writer:1.0.0'
     implementation "io.qameta.allure:allure-selenide:$allureVersion"
     implementation "io.qameta.allure:allure-junit5:$allureVersion"
     implementation "io.qameta.allure:allure-rest-assured:$allureVersion"
@@ -86,6 +86,8 @@ dependencies {
     testImplementation 'org.aspectj:aspectjweaver:1.9.22'
     implementation 'org.awaitility:awaitility:4.2.1'
     implementation 'com.github.javafaker:javafaker:1.0.2'
+    implementation 'org.mockito:mockito-junit-jupiter:5.9.0'
+    testImplementation 'org.mockito:mockito-core:5.9.0'
 }
 
 test {
