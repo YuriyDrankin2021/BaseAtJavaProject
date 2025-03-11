@@ -112,8 +112,6 @@ test {
         )
     }
 
-    jvmArgs "-noverify"
-
     testLogging.showStandardStreams = true
     testLogging {
         showStandardStreams = true
