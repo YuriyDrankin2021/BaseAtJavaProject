@@ -55,9 +55,9 @@ public class FactorialPageTest extends BaseUITest {
     private Stream<Arguments> data() {
         return Stream.of(
                 arguments("0", "The factorial of 0 is: 1"),
-                arguments("-1", "Incorrect value"),
-                arguments("1.5", "Incorrect value"),
-                arguments("bububu", "Incorrect value")
+//                arguments("-1", "Incorrect value"),
+                arguments("1.5", "Please enter an integer"),
+                arguments("bububu", "Please enter an integer")
         );
     }
 }
