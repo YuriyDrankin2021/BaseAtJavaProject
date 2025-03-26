@@ -3,14 +3,16 @@ version: '3'
 services:
   allure:
     image: "frankescobar/allure-docker-service"
+    user: 1000:1000
     environment:
-      CHECK_RESULTS_EVERY_SECONDS: 1
+      CHECK_RESULTS_EVERY_SECONDS: 30
       KEEP_HISTORY: 1
+      KEEP_HISTORY_LATEST: 10
     ports:
       - "5050:5050"
     volumes:
       - ./build/allure-results:/app/allure-results
-      - ./build/reports/allure-reports:/app/default-reports
+      - ./build/reports/allure-report:/app/default-reports
 
   allure-ui:
     image: "frankescobar/allure-docker-service-ui"
