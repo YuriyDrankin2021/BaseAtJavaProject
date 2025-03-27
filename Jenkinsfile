@@ -12,7 +12,7 @@ pipeline {
       steps {
         withGradle{
                 sh './gradlew test'
-                }
+        }
       }
     }
 }
