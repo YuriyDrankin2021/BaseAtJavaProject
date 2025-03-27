@@ -1,0 +1,39 @@
+version: '3.5'
+#networks:
+#  selenoid:
+#    external:
+#      name: selenoid # This assumes network is already created
+
+services:
+  tests:
+    network_mode: bridge
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    #    environment:
+    container_name: tests
+    ports:
+      - "0.0.0.0:5555:5555"
+
+#  allure:
+#    image: "frankescobar/allure-docker-service"
+#    network_mode: bridge
+#    environment:
+#      CHECK_RESULTS_EVERY_SECONDS: 1
+#      KEEP_HISTORY: 1
+#    ports:
+#      - "5050:5050"
+#    volumes:
+#      - ./allure-results:/app/allure-results
+#      - ./allure-reports:/app/default-reports
+#    depends_on:
+#      - tests
+#
+#  allure-ui:
+#    image: "frankescobar/allure-docker-service-ui"
+#    network_mode: bridge
+#    environment:
+#      ALLURE_DOCKER_PUBLIC_API_URL: "http://localhost:5050"
+#      ALLURE_DOCKER_PUBLIC_API_URL_PREFIX: ""
+#    ports:
+#      - "5252:5252"
