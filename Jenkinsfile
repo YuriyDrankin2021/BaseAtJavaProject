@@ -1,12 +1,14 @@
 pipeline {
   agent any
   stages {
-    stage('') {
+    stage('Run tests') {
       steps {
-        withGradle()
-        withGradle()
+        withGradle(sh 'gradle test')
       }
     }
-
-  }
+    stage('Run allureReport') {
+      steps {
+        withGradle(sh 'gradle allureReport')
+      }
+    }
 }
