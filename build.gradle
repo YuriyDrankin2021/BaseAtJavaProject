@@ -92,6 +92,7 @@ dependencies {
 }
 
 test {
+    maxParallelForks = Runtime.runtime.availableProcessors()
     //run tests by tags
     String iTags = System.getProperty("includeTags")
     String eTags = System.getProperty("excludeTags")

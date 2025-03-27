@@ -46,7 +46,7 @@ public class Browser {
             //if run local
 //            Configuration.remote = "http://localhost:4444/wd/hub";
             //if run in docker
-            Configuration.remote = "http://172.17.0.2:4444/wd/hub";
+            Configuration.remote = "http://172.17.0.3:4444/wd/hub";
         }
         Configuration.headless = Boolean.parseBoolean(getProperty("headless"));
     }
