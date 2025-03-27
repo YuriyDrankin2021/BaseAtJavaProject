@@ -3,12 +3,16 @@ pipeline {
   stages {
     stage('Run tests') {
       steps {
-        withGradle(sh 'gradle test')
+        withGradle{
+        sh './gradlew test'
+        }
       }
     }
     stage('Run allureReport') {
       steps {
-        withGradle(sh 'gradle allureReport')
+        withGradle{
+                sh './gradlew test'
+                }
       }
     }
 }
