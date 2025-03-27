@@ -11,7 +11,7 @@ pipeline {
     stage('Run allureReport') {
       steps {
         withGradle{
-                sh './gradlew test'
+                sh './gradlew allureReport'
         }
       }
     }
