@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('Tests') {
+    stage('Test') {
       steps {
         withGradle{
         sh './gradlew clean test'
