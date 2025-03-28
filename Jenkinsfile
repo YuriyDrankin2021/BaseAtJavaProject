@@ -4,7 +4,7 @@ pipeline {
     stage('Run tests') {
       steps {
         withGradle{
-        sh './gradlew test'
+        sh './gradlew clean test'
         }
       }
     }
