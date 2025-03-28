@@ -127,7 +127,7 @@ test {
 tasks.withType(Test).configureEach {
     System.properties.forEach { k, v -> systemProperty(k.toString(), v) }
     String env = System.getProperty("env") ?
-            System.getProperty("env") : "test"
+            System.getProperty("env") : "jenkins"
     systemProperty("env", env)
     String browser = System.getProperty("browser") ?
             System.getProperty("browser") : "chrome"
