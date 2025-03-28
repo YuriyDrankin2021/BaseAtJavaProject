@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import static helpers.TestConfig.getProperty;
+
 public class HibernateSessionFactory {
     private static final Logger logger = LoggerFactory.getLogger(HibernateSessionFactory.class);
     private static SessionFactory sessionFactory;
@@ -18,6 +20,7 @@ public class HibernateSessionFactory {
         if (sessionFactory == null) {
             try {
                 sessionFactory = new Configuration()
+                        .setProperty("hibernate.connection.url", getProperty("db.Url"))
                         .addAnnotatedClass(User.class)
                         .addAnnotatedClass(Auto.class)
                         .buildSessionFactory();

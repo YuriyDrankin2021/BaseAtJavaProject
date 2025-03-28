@@ -43,10 +43,7 @@ public class Browser {
                 put("manual", "true");
             }});
             capabilities.setCapability("selenoid:options", selenoidOptions);
-            //if run local
-//            Configuration.remote = "http://localhost:4444/wd/hub";
-            //if run in docker
-            Configuration.remote = "http://172.17.0.3:4444/wd/hub";
+            Configuration.remote = getProperty("selenoidUrl");
         }
         Configuration.headless = Boolean.parseBoolean(getProperty("headless"));
     }
