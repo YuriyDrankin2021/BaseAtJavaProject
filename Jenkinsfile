@@ -10,6 +10,7 @@ pipeline {
       post{
         always{
             allure includeProperties: false, jdk: '', results: [[path: 'build/allure-results']]
+            junit 'build/reports/**/*.xml'
         }
       }
     }
