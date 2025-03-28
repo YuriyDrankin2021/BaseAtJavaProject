@@ -1,5 +1,9 @@
 pipeline {
-  agent any
+  agent {
+          docker { image 'gradle:jdk21-corretto'
+          reuseNode true
+          }
+      }
   stages {
     stage('Test') {
       steps {
@@ -10,7 +14,7 @@ pipeline {
       post{
         always{
             allure includeProperties: false, jdk: '', results: [[path: 'build/allure-results']]
-            junit 'build/reports/**/*.html'
+//             junit 'build/reports/**/*.html'
         }
       }
     }
