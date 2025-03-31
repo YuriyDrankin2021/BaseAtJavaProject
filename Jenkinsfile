@@ -30,7 +30,7 @@ pipeline {
     stage('Test') {
       steps {
         withGradle{
-        sh './gradlew clean -Dbrowser="${params.Browser}" -DincludeTags="${params.IncludeTags}" -DexcludeTags="${params.ExcludeTags}"  -Denv="${params.Env}" test'
+        sh './gradlew -Dbrowser="${params.Browser}" -DincludeTags="${params.IncludeTags}" -DexcludeTags="${params.ExcludeTags}"  -Denv="${params.Env}" clean test'
         }
       }
       post{
