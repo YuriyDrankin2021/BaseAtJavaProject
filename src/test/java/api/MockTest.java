@@ -2,6 +2,7 @@ package api;
 
 import data.dto.ToDoMockDTO;
 import org.assertj.core.api.SoftAssertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
@@ -14,6 +15,7 @@ public class MockTest {
     SoftAssertions softAssertions = new SoftAssertions();
 
     @Test
+    @Tag("API")
     public void getMockTest(){
         logger.debug("Stating test getMockTest");
         List<ToDoMockDTO> result = client.getMockTodos();

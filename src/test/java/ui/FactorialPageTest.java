@@ -5,6 +5,7 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -30,6 +31,7 @@ public class FactorialPageTest extends BaseUITest {
 
     @Test
     @DisplayName("Check get factorial of 5")
+    @Tag("UI")
     public void checkFactorialPositiveTest() {
         logger.debug("Start test: Check get factorial of 5");
         open("https://qainterview.pythonanywhere.com/");
@@ -43,6 +45,7 @@ public class FactorialPageTest extends BaseUITest {
 
     @ParameterizedTest(name = "Check input \"{0}\" , result must be \"{1}\"")
     @MethodSource("data")
+    @Tag("UI")
     public void checkFactorialNegativeTest(String input, String expectedResult) {
         logger.debug("Start test: Check get factorial of {}", input);
         open("https://qainterview.pythonanywhere.com/");

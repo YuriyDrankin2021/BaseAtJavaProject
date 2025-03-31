@@ -8,6 +8,7 @@ import db.services.UserService;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +30,7 @@ public class HibernateUserTest {
 
     @Test
     @DisplayName("Create new user in db")
+    @Tag("DB")
     public void createUserInDbTest() {
         logger.debug("Start test 'Create new user in db'");
         user = new User(faker.name().firstName(), faker.number().numberBetween(1, 100));
