@@ -1,5 +1,11 @@
 pipeline {
   agent { label 'agent1' }
+  parameters {
+    choice(name: 'Browser', choices: ['chrome', 'opera', 'firefox'], description: 'Choose a browser')
+    choice(name: 'Env', choices: ['jenkins', 'local'], description: 'Choose an environment')
+    string(name: 'IncludeTags', defaultValue: '', description: 'Input include tags')
+    string(name: 'ExcludeTags', defaultValue: '', description: 'Input exclude tags')
+  }
 //   agent any
 //   {
 //           docker { image 'gradle:jdk21-corretto'
@@ -24,7 +30,7 @@ pipeline {
     stage('Test') {
       steps {
         withGradle{
-        sh './gradlew clean test'
+        sh './gradlew clean -Dbrowser="${params.Browser}" -DincludeTags="${params.IncludeTags}" -DexcludeTags="${params.ExcludeTags}"  -Denv="${params.Env}" test'
         }
       }
       post{
