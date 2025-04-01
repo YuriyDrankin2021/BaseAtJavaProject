@@ -5,6 +5,7 @@ pipeline {
     choice(name: 'Env', choices: ['jenkins', 'local'], description: 'Choose an environment')
     string(name: 'IncludeTags', defaultValue: '', description: 'Input include tags')
     string(name: 'ExcludeTags', defaultValue: '', description: 'Input exclude tags')
+    string(name: 'MaxParallelForks', defaultValue: '', description: 'Input maxParallelForks, empty to all available')
   }
 //   agent any
 //   {
@@ -29,13 +30,9 @@ pipeline {
 //           }
     stage('Test') {
       steps {
-//         try {
             withGradle{
-                sh """./gradlew -Pbrowser="${params.Browser}" -PincludeTags="${params.IncludeTags}" -PexcludeTags="${params.ExcludeTags}" -Penv="${params.Env}" clean test"""
+                sh """./gradlew -Pbrowser="${params.Browser}" -PincludeTags="${params.IncludeTags}" -PexcludeTags="${params.ExcludeTags}" -Penv="${params.Env}" -PforkCount="${params.MaxParallelForks}" clean test"""
             }
-//             } finally {
-//                 junit '**/build/test-results/test/*.xml' //make the junit test results available in any case (success & failure)
-//             }
       }
       post{
         always{
@@ -44,12 +41,5 @@ pipeline {
         }
       }
     }
-//     stage('Run allureReport') {
-//       steps {
-//         withGradle{
-//                 sh './gradlew allureReport'
-//         }
-//       }
-//     }
   }
 }

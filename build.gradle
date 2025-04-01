@@ -96,13 +96,16 @@ ext {
     browser = project.properties['browser']
     includeTags = project.properties['includeTags']
     excludeTags = project.properties['excludeTags']
+    forkCount = project.properties['forkCount']
 }
 
 test {
 //    maxParallelForks = Runtime.runtime.availableProcessors()
     //run tests by tags
-    String iTags = project.ext.includeTags?project.ext.includeTags:""
-    String eTags = project.ext.excludeTags?project.ext.excludeTags:""
+    String iTags = project.ext.includeTags ? project.ext.includeTags : ""
+    String eTags = project.ext.excludeTags ? project.ext.excludeTags : ""
+    String forksCount = project.ext.forkCount ? project.ext.forkCount : ""
+    maxParallelForks = forksCount.isEmpty() ? Runtime.runtime.availableProcessors() : Integer.parseInt(forksCount)
     useJUnitPlatform {
         if (iTags != "") {
             def inclTags = iTags.split(',') as Set
