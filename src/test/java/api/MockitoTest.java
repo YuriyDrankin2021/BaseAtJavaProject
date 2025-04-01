@@ -3,6 +3,7 @@ package api;
 import com.github.javafaker.Faker;
 import data.dto.ToDoMockDTO;
 import org.assertj.core.api.SoftAssertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -26,6 +27,7 @@ public class MockitoTest {
 
     @ParameterizedTest(name = "Check mockito api result with list size = {0} ")
     @ValueSource(ints = {1, 5, 10})
+    @Tag("API")
     public void checkMockito(int listSize) {
         logger.debug("Stating test checkMockito");
         List<ToDoMockDTO> mockResult = generateResult(listSize);

@@ -5,6 +5,7 @@ import db.models.User;
 import db.services.UserService;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
@@ -26,6 +27,7 @@ public class HibernateMockUserTest {
 
     @Test
     @DisplayName("Create new user in db")
+    @Tag("DB")
     public void createMockUserInDbTest() {
         logger.debug("Start test 'Create new user in db mock'");
         User mockUser = new User(faker.name().firstName(), faker.number().numberBetween(1, 100));
