@@ -119,6 +119,7 @@ test {
                 """
                     Include tags: "$includeTags"
                     Exclude tags: "$excludeTags"
+                    Forks count:  "$maxParallelForks"
                 """
         )
     }
