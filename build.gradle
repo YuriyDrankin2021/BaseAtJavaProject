@@ -110,7 +110,7 @@ test {
         }
         if (eTags != null) {
             def exclTags = eTags.split(',') as Set
-            setIncludeTags(exclTags)
+            setExcludeTags(exclTags)
         }
         println(
                 """
