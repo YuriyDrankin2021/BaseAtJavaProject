@@ -32,7 +32,7 @@ pipeline {
         try {
             withGradle{
                 sh """./gradlew -Pbrowser="${params.Browser}" -PincludeTags="${params.IncludeTags}" -PexcludeTags="${params.ExcludeTags}" -Penv="${params.Env}" clean test"""
-            }finally {
+            } finally {
                 junit '**/build/test-results/test/*.xml' //make the junit test results available in any case (success & failure)
             }
       }
