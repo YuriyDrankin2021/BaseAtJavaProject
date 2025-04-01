@@ -35,10 +35,10 @@ compileTestJava.options.encoding = 'UTF-8'
 //        classpath("io.qameta.allure:io.qameta.allure.gradle-plugin:${allurePluginVersion}")
 //    }
 //}
-    repositories {
-        mavenCentral()
-        gradlePluginPortal()
-    }
+repositories {
+    mavenCentral()
+    gradlePluginPortal()
+}
 def allureVersion = "2.27.0"
 def selenideVersion = "7.7.3"
 
@@ -91,11 +91,18 @@ dependencies {
     testImplementation 'org.mockito:mockito-core:5.9.0'
 }
 
+ext {
+    env = project.properties['env']
+    browser = project.properties['browser']
+    includeTags = project.properties['includeTags']
+    excludeTags = project.properties['excludeTags']
+}
+
 test {
-    maxParallelForks = Runtime.runtime.availableProcessors()
+//    maxParallelForks = Runtime.runtime.availableProcessors()
     //run tests by tags
-    String iTags = System.getProperty("includeTags")
-    String eTags = System.getProperty("excludeTags")
+    String iTags = project.ext.includeTags
+    String eTags = project.ext.excludeTags
     useJUnitPlatform {
         if (iTags != null) {
             def inclTags = iTags.split(',') as Set
@@ -126,11 +133,11 @@ test {
 
 tasks.withType(Test).configureEach {
     System.properties.forEach { k, v -> systemProperty(k.toString(), v) }
-    String env = System.getProperty("env") ?
-            System.getProperty("env") : "jenkins"
+    String env = project.ext.env ?
+            project.ext.env : "jenkins"
     systemProperty("env", env)
-    String browser = System.getProperty("browser") ?
-            System.getProperty("browser") : "chrome"
+    String browser = project.ext.browser ?
+            project.ext.browser : "chrome"
     systemProperty("browser", browser)
     println(
             """
