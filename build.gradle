@@ -102,7 +102,7 @@ test {
 //    maxParallelForks = Runtime.runtime.availableProcessors()
     //run tests by tags
     String iTags = project.ext.includeTags?project.ext.includeTags:""
-    String eTags = project.ext.excludeTags?project.ext.excludeTags:""
+    String eTags = project.ext.excludeTags
     useJUnitPlatform {
         if (iTags != null) {
             def inclTags = iTags.split(',') as Set
