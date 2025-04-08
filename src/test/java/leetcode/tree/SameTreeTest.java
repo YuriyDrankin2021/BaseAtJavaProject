@@ -30,7 +30,7 @@ public class SameTreeTest {
             boolean b = true;
             if (p.right != null || q.right != null) a = isSameTree(p.right, q.right);
             if (p.left != null || q.left != null) b = isSameTree(p.left, q.left);
-            return a&&b;
+            return a && b;
         }
     }
 
@@ -41,7 +41,7 @@ public class SameTreeTest {
                 arguments(new TreeNode(1, new TreeNode(2, new TreeNode(), new TreeNode()), new TreeNode(3, new TreeNode(4), new TreeNode(5))),
                         new TreeNode(1, new TreeNode(2), new TreeNode(3)),
                         false),
-                arguments(new TreeNode(1, new TreeNode(2)), new TreeNode(1, new TreeNode(), new TreeNode(2)), false),
+                arguments(new TreeNode(1, new TreeNode(2), new TreeNode()), new TreeNode(1, new TreeNode(), new TreeNode(2)), false),
                 arguments(new TreeNode(2, new TreeNode(), new TreeNode(4)),
                         new TreeNode(2, new TreeNode(3), new TreeNode(4)),
                         false)

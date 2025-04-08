@@ -12,6 +12,4 @@ public class TreeNode {
           this.right = right;
       }
 
-    public TreeNode(int i, TreeNode treeNode) {
-    }
 }
