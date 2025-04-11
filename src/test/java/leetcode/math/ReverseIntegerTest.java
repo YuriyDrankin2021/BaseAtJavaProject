@@ -26,14 +26,14 @@ public class ReverseIntegerTest {
             koeff = -1;
             x *= koeff;
         }
-        Long result = 0L;
+        long result = 0L;
         while (x > 0) {
             result = result * 10 + x % 10;
             x = x / 10;
         }
         if (result>Integer.MAX_VALUE){
             return 0;
-        }else return result.intValue() * koeff;
+        }else return (int) result * koeff;
     }
 
     private Stream<Arguments> data() {
