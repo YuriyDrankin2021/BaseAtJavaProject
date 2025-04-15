@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.array;
 
 import io.qameta.allure.Link;
 import org.assertj.core.api.Assertions;
