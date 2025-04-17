@@ -18,7 +18,6 @@ public class MinimumValueToGetPositiveStepByStepSumTest {
     public void minimumValueToGetPositiveStepByStepSumTest(int[] input, int expectedResult) {
         int result = minStartValue(input);
         Assertions.assertThat(result).isEqualTo(expectedResult);
-
     }
 
     public int minStartValue(int[] nums) {
